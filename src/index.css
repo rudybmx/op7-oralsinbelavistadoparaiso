@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* ── Oral Sin Brand Oficial ── */
+  --color-primary: #00A24D;        /* Botões CTA, links, accent */
+  --color-primary-hover: #008c3f;   /* Hover state */
+  --color-dark-green: #007934;      /* Verde escuro: menu, seções, footer */
+  --color-background-light: #EEEEEE; /* Background oficial */
+  --color-surface-light: #f5f5f5;
+  --color-text-main: #414345;       /* Headings */
+  --color-text-muted: #666666;      /* Texto corpo */
+  --color-border-light: #e2e8f0;
+  --color-accent-green: #007934;    /* Alinhado ao dark-green */
+
+  --font-display: "Poppins", "Manrope", sans-serif;
+  --font-body: "Roboto", "Noto Sans", sans-serif;
+
+  --radius-DEFAULT: 0.375rem;       /* 6px — border-radius oficial */
+  --radius-lg: 1rem;
+  --radius-xl: 2rem;
+  --radius-full: 9999px;
+}
+
+@layer base {
+  body {
+    @apply bg-background-light text-text-main font-display overflow-x-hidden;
+  }
+  /* Remove o atraso de 300ms no toque em elementos interativos (mobile) */
+  a, button, input, select, textarea, [role="button"] {
+    touch-action: manipulation;
+  }
+}
+
+/* Acessibilidade: respeita usuários que pedem menos movimento (importante p/ público sênior) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-marquee {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.bg-custom-image {
+  background-image: url('/images/back.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-bg-responsive {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 25%;
+}
+
+@media (max-width: 767px) {
+  .hero-bg-responsive {
+    background-image: url('/hero-bg.webp');
+    /* Casal na metade direita da imagem: desloca o eixo X p/ centralizar o casal no viewport mobile estreito */
+    background-position: 72% 25% !important;
+    background-size: cover !important;
+  }
+  
+  .hero-overlay-custom {
+    /* Mobile: casal (e o sorriso) limpos no topo; verde vira base sólida só na faixa do texto (texto branco) e funde na seção verde */
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 121, 52, 0) 0%,
+      rgba(0, 121, 52, 0) 56%,
+      rgba(0, 121, 52, 0.7) 67%,
+      rgba(0, 121, 52, 1) 74%,
+      rgba(0, 121, 52, 1) 100%
+    ) !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-bg-responsive {
+    background-image: url('/hero-bg.webp');
+  }
+  
+  .hero-overlay-custom {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 121, 52, 0) 0%,
+      rgba(0, 121, 52, 0) 35%,
+      rgba(0, 121, 52, 0.45) 60%,
+      rgba(0, 121, 52, 0.85) 85%,
+      rgba(0, 121, 52, 1) 100%
+    ) !important;
+  }
+}
+
+
+
+
+
+
